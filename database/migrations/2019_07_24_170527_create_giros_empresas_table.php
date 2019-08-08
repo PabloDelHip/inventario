@@ -15,7 +15,7 @@ class CreateGirosEmpresasTable extends Migration
     {
         Schema::create('giros_empresas', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('titulo')
+            $table->string('titulo');
             $table->timestamps();
         });
     }
