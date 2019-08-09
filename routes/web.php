@@ -15,3 +15,6 @@
 //     return view('welcome');
 // });
 Route::get('/', ['as' => '/', 'uses' => 'sitioController@home']);
+
+// Clientes/Provedores
+Route::get('/alta-cliente-proveedor', ['as' => '/alta-cliente-proveedor', 'uses' => 'ClienteProveedorController@alta']);
