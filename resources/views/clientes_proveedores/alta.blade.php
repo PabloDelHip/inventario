@@ -10,21 +10,29 @@
           <div class="box-header with-border">
             <h3 class="box-title">Alta Cliente Proveedor</h3>
           </div>
+          <div class="col-12">
+            @if(Session::get('message'))
+              <div class="alert alert-danger">
+                {{ Session::get('message')  }}
+              </div>
+            @endif
+          </div>
           <!-- /.box-header -->
           <!-- form start -->
-          <form role="form">
+          <form role="form" action="{{route("save-cliente-proveedor")}}" method="POST">
+            {{csrf_field()}}
             <div class="box-body">
               <div class="form-group">
                 <label for="exampleInputEmail1">Nombre</label>
-                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Nombre" name="nombre">
+                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Nombre" name="nombre" required>
               </div>
               <div class="form-group">
                 <label for="exampleInputPassword1">Razon Social</label>
-                <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Razon social" name="razon_social">
+                <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Razon social" name="razon_social" required>
               </div>
               <div class="form-group">
                 <label for="exampleInputEmail1">Correo</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email" name="email">
+                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email" name="correo">
               </div>
               <div class="form-group">
                 <label for="exampleInputPassword1">Telefono</label>
@@ -36,7 +44,7 @@
               </div>
               <div class="form-group">
                 <label for="exampleInputPassword1">RFC</label>
-                <input type="text" class="form-control" id="exampleInputPassword1" placeholder="RFC" name="rfc">
+                <input type="text" class="form-control" id="exampleInputPassword1" placeholder="RFC" name="rfc" required>
               </div>
               <div class="form-group">
                 <label>Domicilio</label>
@@ -44,7 +52,7 @@
               </div>
               <div class="form-group">
                 <label>Tipo</label>
-                <select class="form-control" name="tipo">
+                <select class="form-control" name="tipo" required>
                   <option></option>
                   <option value="1">Cliente</option>
                   <option value="2">Proveedor</option>
@@ -52,15 +60,13 @@
                 </select>
               </div>
               <div class="form-group">
-                <label for="exampleInputFile">File input</label>
-                <input type="file" id="exampleInputFile">
-
-                <p class="help-block">Example block-level help text here.</p>
-              </div>
-              <div class="checkbox">
-                <label>
-                  <input type="checkbox"> Check me out
-                </label>
+                <label>Ciudades</label>
+                <select class="form-control select2" style="width: 100%;" name="ciudad_id" required>
+                  <option></option>
+                  @foreach ($ciudades as $ciudad)
+                    <option value="{{$ciudad->id}}">{{$ciudad->nombre}}</option>
+                  @endforeach
+                </select>
               </div>
             </div>
             <!-- /.box-body -->
