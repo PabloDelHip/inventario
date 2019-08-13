@@ -29,7 +29,7 @@ class ClienteProveedorController extends Controller
 
     public function datos($id)
     {
-        echo 'hola';
+        echo "perrosss";
         // $clientes_proveedores = ClienteProveedor::all();
         // return view('clientes_proveedores.ver', compact('clientes_proveedores'));
     }
