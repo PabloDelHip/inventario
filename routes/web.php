@@ -27,3 +27,7 @@ Route::get('datos-clientes-proveedores/{id}', ['as' => 'datos-clientes-proveedor
 //Unidades
 Route::get('alta-unidades', ['as' => 'alta-unidades', 'uses' => 'UnidadesController@alta']);
 Route::post('save-unidades', ['as' => 'save-unidades', 'uses' => 'UnidadesController@save']);
+
+//Folios
+Route::get('alta-folios', ['as' => 'alta-folios', 'uses' => 'FoliosController@alta']);
+Route::post('save-folios', ['as' => 'save-folios', 'uses' => 'FoliosController@save']);
