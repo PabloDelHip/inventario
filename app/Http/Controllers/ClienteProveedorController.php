@@ -35,4 +35,13 @@ class ClienteProveedorController extends Controller
         // $clientes_proveedores = ClienteProveedor::all();
         // return view('clientes_proveedores.ver', compact('clientes_proveedores'));
     }
+
+    public function buscar_cliente_ajax(Request $request)
+    {
+        $data = array();
+        $data['probando'] = 'estamos probando que esta puta madre funcione---'.$request->rfc_cliente;
+        echo json_encode($data);
+        // $clientes_proveedores = ClienteProveedor::all();
+        // return view('clientes_proveedores.ver', compact('clientes_proveedores'));
+    }
 }
