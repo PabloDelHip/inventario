@@ -29,18 +29,20 @@
                             <button type="button" class="btn btn-info btn-flat"  id="buscar_cliente_rfc">Buscar</button>
                         </span>
                     </div>
+                    <input type="hidden" name="_idCliente" id="idCliente">
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Telefono</label>
+                        <input type="text" class="form-control" id="_razon_social" placeholder="Razon Social" name="razon_social" required>
+                    </div>    
                     <div class="form-group">
                         <label for="exampleInputEmail1">Email</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Correo" name="correo" required>
+                        <input type="email" class="form-control" id="_correo" placeholder="Correo" name="correo" required>
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Telefono</label>
-                        <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Telefono" name="telefono" required>
+                        <input type="text" class="form-control" id="_telefono" placeholder="Telefono" name="telefono" required>
                     </div>    
-                    <div class="form-group">
-                        <label>Contacto</label>
-                        <textarea class="form-control" rows="3" placeholder="Contacto" name="contacto"></textarea>
-                    </div>
+                    
                 </div>
                 <!-- /.box-body -->
 

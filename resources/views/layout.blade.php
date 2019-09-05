@@ -782,7 +782,17 @@ $.widget.bridge('uibutton', $.ui.button);
             dataType: "json",
             data:data,
             success:function(data){
-              alert(data.probando);
+              if(data.id_cliente=='')
+              {
+                alert("el cliente que busca no existe");
+              }
+              else{
+                $("#_idCliente").val(data.id_cliente);
+              $("#_razon_social").val(data.razon_social);
+              $("#_correo").val(data.correo);
+              $("#_telefono").val(data.telefono);
+              }
+             
               // console.log();
                 // if(data.status == 'ok'){
                 //     $('#userName').text(data.result.name);

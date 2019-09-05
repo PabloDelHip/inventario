@@ -38,8 +38,16 @@ class ClienteProveedorController extends Controller
 
     public function buscar_cliente_ajax(Request $request)
     {
+       
+        $cliente_provedores = ClienteProveedor::all()->where('rfc','=',$request->rfc_cliente);
         $data = array();
-        $data['probando'] = 'estamos probando que esta puta madre funcione---'.$request->rfc_cliente;
+        foreach ($cliente_provedores as $cliente_provedor)
+        {
+            $data['id_cliente'] = $cliente_provedor->id;
+            $data['razon_social'] = $cliente_provedor->razon_social;
+            $data['correo'] = $cliente_provedor->correo;
+            $data['telefono'] = $cliente_provedor->telefono;
+        }
         echo json_encode($data);
         // $clientes_proveedores = ClienteProveedor::all();
         // return view('clientes_proveedores.ver', compact('clientes_proveedores'));
