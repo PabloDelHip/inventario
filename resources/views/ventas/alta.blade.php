@@ -41,7 +41,20 @@
                     <div class="form-group">
                         <label for="exampleInputPassword1">Telefono</label>
                         <input type="text" class="form-control" id="_telefono" placeholder="Telefono" name="telefono" required>
-                    </div>    
+                    </div>
+                    
+                        <div class="form-group">
+                          <label>Multiple</label>
+                          <select class="form-control select2" multiple="multiple" data-placeholder="Select a State"
+                                  style="width: 100%;">
+                            @foreach ($folios as $folio)
+                                <option value="{{$folio->id}}">
+                                    {{$folio->folio}}
+                                </option>  
+                            @endforeach
+                          </select>
+                        </div>
+                        
                     
                 </div>
                 <!-- /.box-body -->

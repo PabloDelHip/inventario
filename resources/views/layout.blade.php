@@ -27,6 +27,8 @@
   <link rel="stylesheet" href="{{url("bower_components/bootstrap-daterangepicker/daterangepicker.css")}}">
   <!-- bootstrap wysihtml5 - text editor -->
   <link rel="stylesheet" href="{{url("plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css")}}">
+   <!-- Select2 -->
+   <link rel="stylesheet" href="{{url("bower_components/select2/dist/css/select2.min.css")}}">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -760,8 +762,11 @@ $.widget.bridge('uibutton', $.ui.button);
 <script src="{{url("dist/js/pages/dashboard.js")}}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{url("dist/js/demo.js")}}"></script>
+<!-- Select2 -->
+<script src="{{url("bower_components/select2/dist/js/select2.full.min.js")}}"></script>
 <script>
   $(function () {
+    $('.select2').select2();
     $('#example1').DataTable()
     $('#example2').DataTable({
       'paging'      : true,

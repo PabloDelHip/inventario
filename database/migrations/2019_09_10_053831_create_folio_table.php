@@ -18,6 +18,8 @@ class CreateFolioTable extends Migration
             $table->string('folio');
             $table->boolean('vendido');
             $table->date('fecha_venta')->nullable();
+            $table->unsignedBigInteger('ventas_id')->nullable();
+            $table->foreign('ventas_id')->references('id')->on('ventas')->onDelete('cascade');
             $table->timestamps();
         });
     }
