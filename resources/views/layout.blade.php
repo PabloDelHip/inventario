@@ -29,6 +29,8 @@
   <link rel="stylesheet" href="{{url("plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css")}}">
    <!-- Select2 -->
    <link rel="stylesheet" href="{{url("bower_components/select2/dist/css/select2.min.css")}}">
+   <!-- iCheck for checkboxes and radio inputs -->
+  <link rel="stylesheet" href="{{url("plugins/iCheck/all.css")}}">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -566,7 +568,7 @@
             <div class="menu-info">
               <h4 class="control-sidebar-subheading">Nora Joined Mailing List</h4>
 
-              <p>nora@example.com</p>
+              <p></p>
             </div>
           </a>
         </li>
@@ -764,6 +766,8 @@ $.widget.bridge('uibutton', $.ui.button);
 <script src="{{url("dist/js/demo.js")}}"></script>
 <!-- Select2 -->
 <script src="{{url("bower_components/select2/dist/js/select2.full.min.js")}}"></script>
+<!-- iCheck 1.0.1 -->
+<script src="{{url("plugins/iCheck/icheck.min.js")}}"></script>
 <script>
   $(function () {
     $('.select2').select2();
@@ -776,6 +780,67 @@ $.widget.bridge('uibutton', $.ui.button);
       'info'        : true,
       'autoWidth'   : false
     });
+
+    function calcularPrecioUnidad(total_cobrar,num_folios)
+    {
+      let total = total_cobrar / num_folios;
+      $("#_precio_unidad").val(total.toFixed(2));
+      $("#_cantidad_folios").val(num_folios);
+      
+    }
+
+    $("#_total_cobrar").keyup(function(){
+      let total_cobrar = $("#_total_cobrar").val();
+      let num_folios = $("#_folios").val().length;
+      
+      calcularPrecioUnidad(total_cobrar,num_folios);
+	  });
+
+    $("#_folios").change(function(){
+      let total_cobrar = $("#_total_cobrar").val();
+      let num_folios = $("#_folios").val().length;
+      
+      calcularPrecioUnidad(total_cobrar,num_folios);
+	  });
+
+    //iCheck for checkbox and radio inputs
+    $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
+      checkboxClass: 'icheckbox_minimal-blue',
+      radioClass   : 'iradio_minimal-blue'
+    })
+    //Red color scheme for iCheck
+    $('input[type="checkbox"].minimal-red, input[type="radio"].minimal-red').iCheck({
+      checkboxClass: 'icheckbox_minimal-red',
+      radioClass   : 'iradio_minimal-red'
+    })
+    //Flat red color scheme for iCheck
+    $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
+      checkboxClass: 'icheckbox_flat-green',
+      radioClass   : 'iradio_flat-green'
+    })
+
+    $('#continuar').click(function(){
+      let total_cobrar = $("#_total_cobrar").val();
+      let iva = $("#_total_cobrar").val() * 0.16;
+      let total = parseFloat(total_cobrar) + parseFloat(iva);
+      let abono = $("#_pago_abono").val(); 
+      let pendiente_pago = total-abono;
+      
+      alert(total);
+      alert(iva);
+      $("#_venta_confirmar").val(total_cobrar);
+      $("#_iva_confirmar").val(iva);
+      $("#_total_confirmar").val(total);
+      $("#_abono_confirmar").val(abono);
+      $("#_pendiente_confirmar").val(pendiente_pago);
+      // $("#_venta_confirmar").val();
+      
+    });
+
+    $('#btn_guardar_venta').click(function(){
+      $("#formulario_venta").submit();  
+    });
+
     $('#buscar_cliente_rfc').click(function(){
       var rfc_cliente_proveedor = $('#txt_buscar_cliente_rfc').val();
       let url_ajax = "{{route("buscar_cliente_ajax")}}";
@@ -792,7 +857,7 @@ $.widget.bridge('uibutton', $.ui.button);
                 alert("el cliente que busca no existe");
               }
               else{
-                $("#_idCliente").val(data.id_cliente);
+              $("#idCliente").val(data.id_cliente);
               $("#_razon_social").val(data.razon_social);
               $("#_correo").val(data.correo);
               $("#_telefono").val(data.telefono);
