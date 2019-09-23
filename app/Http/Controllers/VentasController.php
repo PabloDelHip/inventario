@@ -49,12 +49,12 @@ class VentasController extends Controller
         $venta->usuario_venta_id = 1;
         $venta->usuario_modifico_id = 1;
         $venta->cliente_provedor_id = $request->_idCliente;
-       // $venta->save();
+        $venta->save();
 
         //Modificar folios
         // $folios = $request->folios;
         // $this->modificarFolio($venta->id,$folios);
-        $this->agregarPago($request->all());
+        $this->agregarPrimerPago($request,$venta->id);
 
     }
 
@@ -75,23 +75,26 @@ class VentasController extends Controller
         }
     }
 
-    private function agregarPago($datos)
+    private function agregarPrimerPago($datos,$id_venta)
     {
-        dd($datos);
+        // dd($datos);
         $iva = $datos->total_cobrar * 0.16;
         $total_con_iva = $datos->total_cobrar + $iva;
-        $total_actual_sin_iva = $datos->total_cobrar;
-        $total_actual_con_iva = $datos->total_cobrar;
+        $total_actual_sin_iva = $datos->total_cobrar - $datos->pago_abono;
+        $total_actual_con_iva = $total_con_iva - $datos->pago_abono;
 
 
-        $venta = new Venta();
+        $venta = new Pago();
         $venta->total_anterior_con_iva = $total_con_iva;
         $venta->total_anterior_sin_iva = $datos->total_cobrar;
-        $venta->total_actual_con_iva = $request->correo;
-        $venta->total_actual_sin_iva = $request->correo;
-        $venta->pago_con_iva = $request->correo;
-        $venta->pago_sin_iva = $request->correo;
-        $venta->pago_efectivo = $request->correo;
-        $venta->pago_cuenta = $request->correo;
+        $venta->total_actual_con_iva = $total_actual_con_iva;
+        $venta->total_actual_sin_iva = $total_actual_sin_iva;
+        $venta->pago_con_iva = $datos->pago_abono;
+        $venta->pago_sin_iva = $datos->pago_abono;
+        $venta->pago_efectivo = 0;
+        $venta->pago_cuenta = 0;
+        $venta->venta_id=$id_venta;
+        $venta->save();
+        echo "todo chidori";
     }
 }
