@@ -338,7 +338,19 @@
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
         <li><a href="{{ route('/')}}"><i class="fa fa-book"></i> <span>Inicio</span></a></li>
-        <li><a href="{{ route('ver-clientes-proveedores')}}"><i class="fa fa-book"></i> <span>Clientes/Provedores</span></a></li>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-dashboard"></i> <span>Clientes/Provedores</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="{{ route('ver-clientes-proveedores')}}"><i class="fa fa-circle-o"></i> Ver Todos</a></li>
+            <li><a href="{{ route('/alta-cliente-proveedor')}}"><i class="fa fa-circle-o"></i>Agregar</a></li>
+          </ul>
+        </li>
+        {{-- <li><a href="{{ route('ver-clientes-proveedores')}}"><i class="fa fa-book"></i> <span>Clientes/Provedores</span></a></li> --}}
         <li><a href="#"><i class="fa fa-book"></i> <span>Unidades</span></a></li>
         <li><a href="#"><i class="fa fa-book"></i> <span>Folios</span></a></li>
         <li><a href="#"><i class="fa fa-book"></i> <span>Giros/Empresas</span></a></li>

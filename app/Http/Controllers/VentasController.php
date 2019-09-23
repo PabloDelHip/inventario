@@ -52,10 +52,19 @@ class VentasController extends Controller
         $venta->save();
 
         //Modificar folios
-        // $folios = $request->folios;
-        // $this->modificarFolio($venta->id,$folios);
+        $folios = $request->folios;
+        $this->modificarFolio($venta->id,$folios);
         $this->agregarPrimerPago($request,$venta->id);
 
+    }
+
+    public function show($id_venta)
+    {
+        $pagos = Pago::all()->where('venta_id','=',$id_venta);
+        $venta = Venta::find($id_venta);
+        $folios = Folio::all()->where('ventas_id','=',$id_venta)->sortBy("folio");
+        dd($venta->clienteProvedor);
+        return view('ventas.ver',compact('pagos','venta','folios')); 
     }
 
     private function modificarFolio($id,$folios)

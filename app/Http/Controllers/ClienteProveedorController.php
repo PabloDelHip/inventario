@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Ciudad;
 use App\ClienteProveedor;
 use App\Unidad;
+use App\Venta;
+use App\Pago;
 
 class ClienteProveedorController extends Controller
 {
@@ -32,8 +34,20 @@ class ClienteProveedorController extends Controller
     {
         $cliente_proveedor = ClienteProveedor::find($id);
         $unidades = Unidad::all()->where('cliente_provedores_id','=',$id);
+        $ventas = Venta::all()->where('cliente_provedor_id','=',$id);
+       
+        // dd($ventas);
+        return view('clientes_proveedores.info', compact('ventas'));
         // $clientes_proveedores = ClienteProveedor::all();
         // return view('clientes_proveedores.ver', compact('clientes_proveedores'));
+    }
+
+    public static function seleccionarPagos($id_venta)
+    {
+    //    $pagos = Pago::all()->where('venta_id','=',$id_venta)->orderBy('id');
+        $pagos = Pago::where('venta_id','=',$id_venta)->orderBy('id', 'DESC')->get()->take(1);
+    //    dd($pagos);
+       return $pagos;
     }
 
     public function buscar_cliente_ajax(Request $request)
