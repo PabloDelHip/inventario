@@ -355,6 +355,7 @@
         <li><a href="#"><i class="fa fa-book"></i> <span>Folios</span></a></li>
         <li><a href="#"><i class="fa fa-book"></i> <span>Giros/Empresas</span></a></li>
         <li><a href="#"><i class="fa fa-book"></i> <span>Ventas</span></a></li>
+        <li><a href="{{ route('ver-pagos')}}"><i class="fa fa-book"></i> <span>Pagos</span></a></li>
         {{-- <li class="treeview">
           <a href="#">
             <i class="fa fa-dashboard"></i> <span>Clientes/Provedores</span>
@@ -664,6 +665,16 @@ $.widget.bridge('uibutton', $.ui.button);
       
       calcularPrecioUnidad(total_cobrar,num_folios);
 	  });
+
+    if($("#_total_cobrar").val()!='')
+    {
+      let total_cobrar = $("#_total_cobrar").val();
+      let num_folios = $("#_folios").val().length;
+      
+      calcularPrecioUnidad(total_cobrar,num_folios);
+    }
+
+    
 
     //iCheck for checkbox and radio inputs
     $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({

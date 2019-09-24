@@ -63,8 +63,9 @@ class VentasController extends Controller
         $pagos = Pago::all()->where('venta_id','=',$id_venta);
         $venta = Venta::find($id_venta);
         $folios = Folio::all()->where('ventas_id','=',$id_venta)->sortBy("folio");
-        dd($venta->clienteProvedor);
-        return view('ventas.ver',compact('pagos','venta','folios')); 
+        $falta_pagar =$venta->total_con_iva - $pagos->sum('pago_con_iva');
+        // dd($pagos);
+        return view('ventas.ver',compact('pagos','venta','folios','falta_pagar')); 
     }
 
     private function modificarFolio($id,$folios)
@@ -105,5 +106,28 @@ class VentasController extends Controller
         $venta->venta_id=$id_venta;
         $venta->save();
         echo "todo chidori";
+    }
+
+    public function abonarPago(Request $request)
+    {
+        // dd($request->all());
+        // $total_actual = ($request->pagado + $request->falta_pagar) - $request->abonado;
+        $total_actual = $request->pagado + $request->abonado;
+
+        $pago = new Pago();
+        $pago->total_anterior_con_iva = $request->pagado;
+        $pago->total_anterior_sin_iva = $request->pagado;
+
+        $pago->total_actual_con_iva = $total_actual;
+        $pago->total_actual_sin_iva = $total_actual;
+        
+        $pago->pago_con_iva = $request->abonado;
+        $pago->pago_sin_iva = $request->abonado;
+
+        $pago->pago_efectivo=0;
+        $pago->pago_cuenta = 0;
+        $pago->venta_id=$request->id_venta;
+        $pago->save();
+        echo "se guardo correctamente";
     }
 }

@@ -22,7 +22,7 @@
                     <th>Pagado</th>
                     <th>Falta x pagar</th>
                     <th>Fecha y hora ultimo pago</th>
-                    <th>Status</th>
+                    <th>Status</th> 
                     <th></th>
                   </tr>
                   </thead>
@@ -31,17 +31,17 @@
                         <tr>
                           @php
                               $pago = ClienteProveedorController::seleccionarPagos($venta->id);
-                              $falta_por_pagar = $pago[0]['total_actual_con_iva'];
+                              $falta_por_pagar = $venta->total_con_iva - $pago[0]['total_actual_con_iva']
                           @endphp
                             <td>{{$venta->id}}</td>
                             <td>{{$venta->created_at}}</td>
                             <th>{{$venta->total_con_iva}}</th>
-                            <th>${{$pago[0]['pago_con_iva']}}</th>
+                            <th>${{$falta_por_pagar}}</th>
                             <th>${{$pago[0]['total_actual_con_iva']}}</th>
                             <th>{{$pago[0]['created_at']}}</th>
                             <th>
                               @if($falta_por_pagar<=0)
-                                <small class="label bg-red">Pagado</small>
+                                <small class="label bg-green">Pagado</small>
                               @else
                                 <small class="label bg-red">Pendiente de pago</small>
                               @endif

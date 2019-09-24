@@ -8,7 +8,7 @@
             <!-- general form elements -->
             <div class="box box-primary">
                 <div class="box-header with-border">
-                <h3 class="box-title">Alta Venta</h3>
+                <h3 class="box-title">Datos Venta</h3>
                 </div>
                 <div class="col-12">
                 @if(Session::get('message'))
@@ -24,30 +24,30 @@
                 <div class="box-body">
                     <div class="input-group input-group-sm">
                         
-                        <input type="text" class="form-control" value="{{$venta->}}" disabled id="txt_buscar_cliente_rfc" placeholder="Ingresar RFC del Cliente/Proveedor">
+                        <input type="text" class="form-control" value="{{$venta->clienteProvedor->rfc}}" disabled id="txt_buscar_cliente_rfc" placeholder="Ingresar RFC del Cliente/Proveedor">
                         <span class="input-group-btn">
                             <button type="button" class="btn btn-info btn-flat"  id="buscar_cliente_rfc" disabled>Buscar</button>
                         </span>
                     </div>
                     <input type="hidden" name="_idCliente" id="idCliente">
                     <div class="form-group">
-                        <label for="exampleInputPassword1">Telefono</label>
-                        <input type="text" class="form-control" id="_razon_social" disabled placeholder="Razon Social" name="razon_social" required>
+                        <label for="exampleInputPassword1">Razon social</label>
+                        <input type="text" class="form-control" value="{{$venta->clienteProvedor->razon_social}}" id="_razon_social" disabled placeholder="Razon Social" name="razon_social" required>
                     </div>    
                     <div class="form-group">
                         <label for="exampleInputEmail1">Email</label>
-                        <input type="email" class="form-control" id="_correo" disabled placeholder="Correo" name="correo" required>
+                        <input type="email" class="form-control" value="{{$venta->clienteProvedor->correo}}" id="_correo" disabled placeholder="Correo" name="correo" required>
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Telefono</label>
-                        <input type="text" class="form-control" id="_telefono" disabled placeholder="Telefono" name="telefono" required>
+                        <input type="text" class="form-control" value="{{$venta->clienteProvedor->telefono}}" id="_telefono" disabled placeholder="Telefono" name="telefono" required>
                     </div>
 
                     <hr>
                     
                     <div class="form-group">
                         <label>Folios</label>
-                        <select class="form-control select2" id="_folios" multiple="multiple" name="folios[]" data-placeholder="Seleccionar Folios"
+                        <select class="form-control select2" disabled id="_folios" multiple="multiple" name="folios[]" data-placeholder="Seleccionar Folios"
                                 style="width: 100%;">
                         @foreach ($folios as $folio)
                             <option selected value="{{$folio->id}}">
@@ -60,7 +60,7 @@
                     <div class="input-group">
                         
                         <span class="input-group-addon"><i class="fa fa-dollar"></i></span>
-                        <input type="number" class="form-control" placeholder="Total a cobrar" id="_total_cobrar" name="total_cobrar">
+                        <input type="number" class="form-control" disabled placeholder="Total a cobrar" value="{{$venta->total_con_iva}}" id="_total_cobrar" name="total_cobrar">
                     </div>
 
                     <div class="form-group">
@@ -77,51 +77,101 @@
 
                     <div class="form-group">
                         <label>
-                            <input type="radio" name="tipo_recibo" value="factura" class="minimal" checked>
+                            <input type="radio" @if($venta->factura) checked @endif disabled name="tipo_recibo" value="factura" class="minimal">
                             Factura
                         </label>
                         <label>
-                            <input type="radio" name="tipo_recibo" value="nota" class="minimal">
+                            <input type="radio" @if($venta->nota) checked @endif disabled name="tipo_recibo" value="nota" class="minimal">
                             Nota
                         </label>
                         <label>
-                            <input type="radio" name="tipo_recibo" value="publico_general" class="minimal">
+                            <input type="radio" @if($venta->publico_general) checked @endif disabled name="tipo_recibo" value="publico_general" class="minimal">
                             Publico en General
                         </label>
                     </div>
 
                     <hr>
 
-                    <div class="form-group">
-                        <label>
-                            <input type="radio" name="tipo_pago" value="pagado" class="minimal" checked>
-                            Pagado
-                        </label>
-                        <label>
-                            <input type="radio" name="tipo_pago" value="pendiente" class="minimal">
-                            Pendiente de Pago
-                        </label>
-                        <label>
-                            <input type="radio" name="tipo_pago" value="abono" class="minimal">
-                            Abono
-                        </label>
-                    </div>
-
-                    <hr>
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">Total Pagando o abonando</label>
-                        <input type="number" class="form-control" id="_pago_abono" placeholder="Pago o Abono" name="pago_abono" required>
-                    </div>
+                    
                 </div>
                 <!-- /.box-body -->
-
-                <div class="box-footer">
-                        <a href="#" class="btn btn-default" id="continuar" data-toggle="modal" data-target="#modal-default"> Continuar</a>
-                    {{-- <button type="submit" class="btn btn-primary">Submit</button> --}}
-                </div>
                 </form>
             </div>
         </div>
+
+        <div class="col-md-6">
+                <!-- general form elements -->
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                    <h3 class="box-title">Pago</h3>
+                    </div>
+                    <div class="col-12">
+                    @if(Session::get('message'))
+                        <div class="alert alert-danger">
+                        {{ Session::get('message')  }}
+                        </div>
+                    @endif
+                    </div>
+                    <!-- /.box-header -->
+                    <!-- form start -->
+                    <form role="form" action="{{route("abonar-pago")}}" method="POST">
+                    {{csrf_field()}}
+                    <div class="box-body">    
+                        <div class="form-group has-success">
+                            <label class="control-label" for="inputSuccess"> Total Pagado</label>
+                            <input type="text" class="form-control" name="pagado" id="inputSuccess" value="{{$pagos->sum('pago_con_iva')}}">
+                        </div>
+                        <div class="form-group has-error">
+                            <label class="control-label" for="inputError"> Falta por Pagar</label>
+                            <input type="text" class="form-control" name="falta_pagar" id="inputError" value="{{$falta_pagar}}" >
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Abonar</label>
+                            <input type="number" class="form-control" id="_telefono" name="abonado" required>
+                        </div>
+                        <div class="box-footer">
+                            <input type="hidden" name="pagado" value="{{$pagos->sum('pago_con_iva')}}">
+                            <input type="hidden" name="id_venta" value="{{$venta->id}}">
+                            <input type="hidden" name="falta_pagar" value="{{$falta_pagar}}">
+                            <input type="submit" class="btn btn-default" value="Abonar">
+                        </div>
+                        
+                    </div>
+                    <!-- /.box-body -->
+    
+                    {{-- <div class="box-footer">
+                            <a href="#" class="btn btn-default" id="continuar" data-toggle="modal" data-target="#modal-default"> Continuar</a>
+                    </div> --}}
+                    </form>
+                </div>
+
+                <div class="box">
+                        <div class="box-header">
+                          <h3 class="box-title">Pagos</h3>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                          <table id="example1" class="table table-bordered table-striped">
+                            <thead>
+                            <tr>
+                              <th>Fecha de pago</th>
+                              <th>Pago</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                              @foreach ($pagos as $pago)
+                                <tr>
+                                    <td>{{$pago->created_at}}</td>
+                                    <td>{{$pago->pago_con_iva}}</td>
+                                </tr>
+                              @endforeach
+                            </tbody>
+                          </table>
+                        </div>
+                        <!-- /.box-body -->
+                      </div>
+            </div>
 
         <div class="modal fade" id="modal-default">
                 <div class="modal-dialog">

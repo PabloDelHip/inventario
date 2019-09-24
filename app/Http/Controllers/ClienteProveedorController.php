@@ -46,7 +46,7 @@ class ClienteProveedorController extends Controller
     {
     //    $pagos = Pago::all()->where('venta_id','=',$id_venta)->orderBy('id');
         $pagos = Pago::where('venta_id','=',$id_venta)->orderBy('id', 'DESC')->get()->take(1);
-    //    dd($pagos);
+        // dd($pagos);
        return $pagos;
     }
 
