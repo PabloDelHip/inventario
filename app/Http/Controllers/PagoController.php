@@ -10,7 +10,6 @@ class PagoController extends Controller
     public function show()
     {
         $pagos = Pago::all();
-        dd($pagos);
-        return view('giros_empresas.ver', compact('giros_empresas'));
+        return view('pagos.ver', compact('pagos'));
     }
 }

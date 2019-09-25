@@ -351,23 +351,22 @@
           </ul>
         </li>
         {{-- <li><a href="{{ route('ver-clientes-proveedores')}}"><i class="fa fa-book"></i> <span>Clientes/Provedores</span></a></li> --}}
-        <li><a href="#"><i class="fa fa-book"></i> <span>Unidades</span></a></li>
-        <li><a href="#"><i class="fa fa-book"></i> <span>Folios</span></a></li>
-        <li><a href="#"><i class="fa fa-book"></i> <span>Giros/Empresas</span></a></li>
-        <li><a href="#"><i class="fa fa-book"></i> <span>Ventas</span></a></li>
+        <li><a href="{{ route('alta-unidades')}}"><i class="fa fa-book"></i> <span>Unidades</span></a></li>
+        <li><a href="{{ route('alta-folios')}}"><i class="fa fa-book"></i> <span>Folios</span></a></li>
+        <li class="treeview">
+            <a href="#">
+              <i class="fa fa-dashboard"></i> <span>Giros/Empresas</span>
+              <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+            </a>
+            <ul class="treeview-menu">
+              <li><a href="{{ route('ver-giro-empresa')}}"><i class="fa fa-circle-o"></i> Ver Todos</a></li>
+              <li><a href="{{ route('alta-giro-empresa')}}"><i class="fa fa-circle-o"></i>Agregar</a></li>
+            </ul>
+        </li>
+        <li><a href="{{ route('ver-ventas')}}"><i class="fa fa-book"></i> <span>Ventas</span></a></li>
         <li><a href="{{ route('ver-pagos')}}"><i class="fa fa-book"></i> <span>Pagos</span></a></li>
-        {{-- <li class="treeview">
-          <a href="#">
-            <i class="fa fa-dashboard"></i> <span>Clientes/Provedores</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="index.html"><i class="fa fa-circle-o"></i> Ver </a></li>
-            <li><a href="index2.html"><i class="fa fa-circle-o"></i> </a></li>
-          </ul>
-        </li> --}}
       </ul>
     </section>
     <!-- /.sidebar -->

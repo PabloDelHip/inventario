@@ -68,6 +68,17 @@ class VentasController extends Controller
         return view('ventas.ver',compact('pagos','venta','folios','falta_pagar')); 
     }
 
+    public function showAll()
+    {
+        dd("hola");
+        // $pagos = Pago::all()->where('venta_id','=',$id_venta);
+        // $venta = Venta::find($id_venta);
+        // $folios = Folio::all()->where('ventas_id','=',$id_venta)->sortBy("folio");
+        // $falta_pagar =$venta->total_con_iva - $pagos->sum('pago_con_iva');
+        // // dd($pagos);
+        // return view('ventas.ver',compact('pagos','venta','folios','falta_pagar')); 
+    }
+
     private function modificarFolio($id,$folios)
     {
         $now = new \DateTime();

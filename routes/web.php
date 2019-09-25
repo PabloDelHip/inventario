@@ -41,6 +41,7 @@ Route::get('ver-giro-empresa', ['as' => 'ver-giro-empresa', 'uses' => 'GirosEmpr
 //Ventas
 Route::get('alta-venta/{id}', ['as' => 'alta-venta', 'uses' => 'VentasController@alta']);
 Route::get('ver-venta/{id}', ['as' => 'ver-venta', 'uses' => 'VentasController@show']);
+Route::get('ver-ventas', ['as' => 'ver-ventas', 'uses' => 'VentasController@showAll']);
 Route::post('save-venta', ['as' => 'save-venta', 'uses' => 'VentasController@save']);
 Route::post('abonar-pago', ['as' => 'abonar-pago', 'uses' => 'VentasController@abonarPago']);
 // Route::get('alta-venta/{id}', ['as' => 'alta-venta', 'uses' => 'VentasController@alta']);
