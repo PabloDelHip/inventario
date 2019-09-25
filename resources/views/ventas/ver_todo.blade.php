@@ -14,23 +14,27 @@
               <thead>
               <tr>
                 <th>Id Venta</th>
-                <th>rfc</th>
-                <th>total_venta</th>
-                <th>Fecha</th>
+                <th>Rfc</th>
+                <th>Razon Social</th>
+                <th>Total Venta</th>
+                <th>Recibo</th>
+                <th>Empresa Venta</th>
+                <th>Usuario Venta</th>
                 <th></th>
               </tr>
               </thead>
               <tbody>
-                @foreach ($pagos as $pago)
+                @foreach ($ventas as $venta)
                 <tr>
-                    <td>{{$pago->venta_id}}</td>
-                    <td>{{$pago->venta->clienteProvedor->razon_social}}</td>
+                    <td>{{$venta->id}}</td>
+                    <td>{{$venta->clienteProvedor->rfc}}</td>
+                    <td>{{$venta->clienteProvedor->razon_social}}</td>
                     <td>${{$pago->pago_con_iva}}</td>
                     <td>{{$pago->created_at}}</td>
                     <th>
                         <a class="btn btn-success btn-sm" href="{{route("ver-venta",['id'=> $pago->venta_id])}}">
                             <i class="fa fa-eye"></i> Ver Venta
-                        </a>
+                        </a> 
                     </th>   
                 </tr>
                 @endforeach

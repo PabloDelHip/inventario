@@ -56,6 +56,9 @@ class VentasController extends Controller
         $this->modificarFolio($venta->id,$folios);
         $this->agregarPrimerPago($request,$venta->id);
 
+        return \Redirect::route('alta-venta',['id'=>$request->giro_empresa])
+          ->with('message', 'La venta se a guardado de forma correcta');
+
     }
 
     public function show($id_venta)
@@ -116,7 +119,6 @@ class VentasController extends Controller
         $venta->pago_cuenta = 0;
         $venta->venta_id=$id_venta;
         $venta->save();
-        echo "todo chidori";
     }
 
     public function abonarPago(Request $request)
@@ -139,6 +141,7 @@ class VentasController extends Controller
         $pago->pago_cuenta = 0;
         $pago->venta_id=$request->id_venta;
         $pago->save();
-        echo "se guardo correctamente";
+        return \Redirect::route('ver-venta',['id'=>$request->id_venta])
+        ->with('message', 'El abono se realizo de forma correcta');
     }
 }

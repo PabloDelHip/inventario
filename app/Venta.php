@@ -13,4 +13,9 @@ class Venta extends Model
     {
         return $this->belongsTo(ClienteProveedor::class);
     }
+
+    public function giro()
+    {
+        return $this->belongsTo(GiroEmpresa::class);
+    }
 }
