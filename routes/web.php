@@ -31,7 +31,10 @@ Route::post('save-unidades', ['as' => 'save-unidades', 'uses' => 'UnidadesContro
 
 //Folios
 Route::get('alta-folios', ['as' => 'alta-folios', 'uses' => 'FoliosController@alta']);
+Route::get('ver-folios', ['as' => 'ver-folios', 'uses' => 'FoliosController@showAll']);
 Route::post('save-folios', ['as' => 'save-folios', 'uses' => 'FoliosController@save']);
+Route::post('save-varios-folios', ['as' => 'save-varios-folios', 'uses' => 'FoliosController@saveVarios']);
+
 
 //Giros Empresas
 Route::get('alta-giro-empresa', ['as' => 'alta-giro-empresa', 'uses' => 'GirosEmpresasController@alta']);

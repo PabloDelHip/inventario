@@ -17,6 +17,7 @@
                 <th>Rfc</th>
                 <th>Razon Social</th>
                 <th>Total Venta</th>
+                <th>Total Pagado</th>
                 <th>Recibo</th>
                 <th>Empresa Venta</th>
                 <th>Usuario Venta</th>
@@ -29,7 +30,11 @@
                     <td>{{$venta->id}}</td>
                     <td>{{$venta->clienteProvedor->rfc}}</td>
                     <td>{{$venta->clienteProvedor->razon_social}}</td>
-                    <td>${{$pago->pago_con_iva}}</td>
+                    <td>${{$venta->total_con_iva}}</td>
+                    <td>${{$venta->total_pagado}}</td>
+                    <td>
+                      @if()
+                    </td>
                     <td>{{$pago->created_at}}</td>
                     <th>
                         <a class="btn btn-success btn-sm" href="{{route("ver-venta",['id'=> $pago->venta_id])}}">

@@ -352,7 +352,7 @@
         </li>
         {{-- <li><a href="{{ route('ver-clientes-proveedores')}}"><i class="fa fa-book"></i> <span>Clientes/Provedores</span></a></li> --}}
         <li><a href="{{ route('alta-unidades')}}"><i class="fa fa-book"></i> <span>Unidades</span></a></li>
-        <li><a href="{{ route('alta-folios')}}"><i class="fa fa-book"></i> <span>Folios</span></a></li>
+        <li><a href="{{ route('ver-folios')}}"><i class="fa fa-book"></i> <span>Folios</span></a></li>
         <li class="treeview">
             <a href="#">
               <i class="fa fa-dashboard"></i> <span>Giros/Empresas</span>

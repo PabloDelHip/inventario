@@ -73,7 +73,9 @@ class VentasController extends Controller
 
     public function showAll()
     {
-        dd("hola");
+        $ventas = Venta::all();
+
+        return view('ventas.ver_todo',compact('ventas')); 
         // $pagos = Pago::all()->where('venta_id','=',$id_venta);
         // $venta = Venta::find($id_venta);
         // $folios = Folio::all()->where('ventas_id','=',$id_venta)->sortBy("folio");
