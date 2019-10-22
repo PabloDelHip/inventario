@@ -27,6 +27,7 @@ Route::post('buscar_cliente_ajax', ['as' => 'buscar_cliente_ajax', 'uses' => 'Cl
 
 //Unidades
 Route::get('alta-unidades', ['as' => 'alta-unidades', 'uses' => 'UnidadesController@alta']);
+Route::get('ver-unidades', ['as' => 'ver-unidades', 'uses' => 'UnidadesController@showAll']);
 Route::post('save-unidades', ['as' => 'save-unidades', 'uses' => 'UnidadesController@save']);
 
 //Folios

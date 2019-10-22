@@ -20,4 +20,10 @@ class UnidadesController extends Controller
         return \Redirect::route('alta-unidades')
           ->with('message', 'La unidad se a guardado de forma correcta');
     }
+
+    public function showAll()
+    {
+        $unidades = Unidad::all();
+        return view('unidades.ver_todo',compact('unidades')); 
+    }
 }

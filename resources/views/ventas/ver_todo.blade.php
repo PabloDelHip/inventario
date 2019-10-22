@@ -19,8 +19,6 @@
                 <th>Total Venta</th>
                 <th>Total Pagado</th>
                 <th>Recibo</th>
-                <th>Empresa Venta</th>
-                <th>Usuario Venta</th>
                 <th></th>
               </tr>
               </thead>
@@ -33,14 +31,19 @@
                     <td>${{$venta->total_con_iva}}</td>
                     <td>${{$venta->total_pagado}}</td>
                     <td>
-                      @if()
+                      @if($venta->factura)
+                        <span class="label label-primary">Factura</span>
+                      @elseif($venta->nota)
+                        <span class="label label-warning">Nota</span>
+                      @elseif($venta->publico_general)
+                        <span class="label label-danger">Publico General</span>
+                      @endif
                     </td>
-                    <td>{{$pago->created_at}}</td>
-                    <th>
-                        <a class="btn btn-success btn-sm" href="{{route("ver-venta",['id'=> $pago->venta_id])}}">
+                    <td>
+                        <a class="btn btn-success btn-sm" href="{{route('ver-venta',['id'=>$venta->id])}}">
                             <i class="fa fa-eye"></i> Ver Venta
-                        </a> 
-                    </th>   
+                        </a>
+                    </td>   
                 </tr>
                 @endforeach
               </tbody>

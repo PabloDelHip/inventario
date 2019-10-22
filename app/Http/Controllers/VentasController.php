@@ -76,12 +76,6 @@ class VentasController extends Controller
         $ventas = Venta::all();
 
         return view('ventas.ver_todo',compact('ventas')); 
-        // $pagos = Pago::all()->where('venta_id','=',$id_venta);
-        // $venta = Venta::find($id_venta);
-        // $folios = Folio::all()->where('ventas_id','=',$id_venta)->sortBy("folio");
-        // $falta_pagar =$venta->total_con_iva - $pagos->sum('pago_con_iva');
-        // // dd($pagos);
-        // return view('ventas.ver',compact('pagos','venta','folios','falta_pagar')); 
     }
 
     private function modificarFolio($id,$folios)

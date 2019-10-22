@@ -6,10 +6,13 @@
       <div class="col-xs-12">
         <div class="box">
           <div class="box-header">
-            <h3 class="box-title">Clientes/Proveedores</h3>
+            <h3 class="box-title">Folios</h3>
           </div>
           <!-- /.box-header -->
           <div class="box-body">
+            <a href="{{route('alta-folios')}}" class="btn btn-primary">Subir Folios</a>
+            <br>
+            <br>
             <table id="example1" class="table table-bordered table-striped">
               <thead>
               <tr>
@@ -25,9 +28,9 @@
                     <td>{{$folio->folio}}</td>
                     <td>
                         @if($folio->vendido)
-                            <span class="label label-success">Vendido</span>
+                          <span class="label label-success">Vendido</span>
                         @else
-                        <span class="label label-primary">Libre</span>
+                          <span class="label label-primary">Libre</span>
                         @endif
                     </td>
                     <td>{{$folio->fecha_venta}}</td>
