@@ -28,7 +28,9 @@ Route::post('buscar_cliente_ajax', ['as' => 'buscar_cliente_ajax', 'uses' => 'Cl
 //Unidades
 Route::get('alta-unidades', ['as' => 'alta-unidades', 'uses' => 'UnidadesController@alta']);
 Route::get('ver-unidades', ['as' => 'ver-unidades', 'uses' => 'UnidadesController@showAll']);
+Route::get('ver-unidad/{id}', ['as' => 'ver-unidad', 'uses' => 'UnidadesController@show']);
 Route::post('save-unidades', ['as' => 'save-unidades', 'uses' => 'UnidadesController@save']);
+Route::post('update-unidades', ['as' => 'update-unidades', 'uses' => 'UnidadesController@update']);
 
 //Folios
 Route::get('alta-folios', ['as' => 'alta-folios', 'uses' => 'FoliosController@alta']);

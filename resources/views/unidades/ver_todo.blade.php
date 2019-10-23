@@ -19,6 +19,7 @@
                 <th>Placas</th>
                 <th>Folio Tarjeta Circulación</th>
                 <th>Rfc Cliente</th>
+                <th></th>
               </tr>
               </thead>
               <tbody>
@@ -30,6 +31,14 @@
                     <td>{{$unidad->placas}}</td>
                     <td>{{$unidad->folio_tarjeta_circulacion}}</td>
                     <td>{{$unidad->clienteProvedor->rfc}}</td>
+                    <td>
+                        <a class="btn btn-primary btn-sm" href="{{route('ver-unidad',['id'=>$unidad->id])}}">
+                            <i class="fa fa-edit"></i> Editar
+                        </a>
+                        <a class="btn btn-danger btn-sm">
+                            <i class="fa fa-ban"></i> Bloquear
+                        </a>
+                    </td>
                     
                 </tr>
                 @endforeach

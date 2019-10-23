@@ -11,7 +11,7 @@ class Unidad extends Model
 
     public function clienteProvedor()
     {
-        return $this->belongsTo(ClienteProveedor::class,'cliente_provedor_id');
+        return $this->belongsTo(ClienteProveedor::class);
     }
 
 }
